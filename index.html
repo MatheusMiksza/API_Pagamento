@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title>Checkout pagamento</title>
+
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width">
+
+    	<link rel="stylesheet" href="style.css">
+    	<style>
+			.form-control:invalid {
+				border: 1px solid #cc0000;
+			}
+
+			.navbar {
+				margin: 0;
+			}
+    	</style>
+  	</head>
+	
+	<body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+        
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html"><img style="width: 40px;" src="https://portalibef.powerappsportals.com/Logo%20IBEF%20SPSem%20Fundo.jpg" alt=""></a>
+
+				<button class="navbar-toggle" type="button" data-target=".navbar-collapse" data-toggle="collapse">
+					menu
+				</button>
+			</div>
+			
+			<ul class="nav navbar-nav collapse navbar-collapse">
+				<li><a href="https://portalibef.powerappsportals.com/">Sobre</a></li>				
+				<li><a href="https://portalibef.powerappsportals.com/contact-us/">Entre em contato</a></li>
+			</ul>
+		</nav>
+
+		<div class="jumbotron">
+			<div class="container">
+				<h1>IBEF-SP</h1>
+  				<p>INSTITUTO BRASILEIRO DE EXECUTIVOS DE FINANÇAS</p>
+				  <div id="qrcode"><span id="qr"></span></div>
+				
+				  <form  action='https://cieloecommerce.cielo.com.br/transactionalvnext/order/buynow' target='blank'><input type='hidden' name='id' value='04b0d3a3-2240-4aee-858d-f218486adb7b' /><input type='image' name='submit' alt='Comprar' src='https://cieloecommerce.cielo.com.br/backoffice/Content/img/buttons/button-5-1.png' /></form>
+				  <img src="http://i.stack.imgur.com/FhHRx.gif" alt="" style="width: 50px; position:absolute; top:40%; left:50%;right: 50%;"   >
+				  
+
+  			</div>
+  		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2 class="panel-title">Sua compra</h2>
+						</div>
+			
+						<div class="panel-body">
+							<dl>
+								<dt>Curso</dt>
+								<dd id="curso" ><span id="curse"></span></dd>
+								
+								<dt>Preço</dt>
+								<dd id="preco" >R$<span id="price"></span></dd>
+								
+								<dt>Associação</dt>
+								<dd>Semestral</dd>
+
+                                <dt>Parcelados</dt>
+								<dd><span id="parcelas"></span></dd>
+
+								
+							</dl>
+						</div>
+					</div>
+				</div>
+
+				<form class="col-sm-8">
+					<div class="row">
+						<fieldset class="col-sm-6">
+							<legend>Dados</legend>
+
+							<div class="form-group">
+								<label for="name">Nome completo</label>
+								<input type="text" class="form-control" id="name" name="name" placeholder="Nome impresso no cartão" autofocus required>
+							</div>
+
+							
+							<div class="form-group">
+								<label for="cpf">CPF</label>
+								<input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+							</div>
+
+                            <div class="form-group">
+								<label for="Curso">Curso</label>
+								<select name="Curso" id="Curso" class="form-control" onclick="SuaCompra()">
+                                    <option id="1" value="1">Cuso de Datilografia</option>
+                                    <option id="2" value="2">Curso Financeiro</option>
+                                    <option id="3" value="3">Associação individual</option>
+								</select>
+							</div>
+
+                            <div class="form-group">
+								<label for="Parc">Parecelado em</label>
+								<select name="Parc" id="Parc" class="form-control" onclick="Parcela()">
+                                    <option id="1" value="1">1X</option>
+                                    <option id="2" value="2">2X</option>
+                                    <option id="3" value="3">3X</option>
+								</select>
+							</div>
+						
+						</fieldset>
+
+						<fieldset class="col-sm-6">
+							<legend>Cartão de Crédito</legend>
+
+                            <div class="form-group">
+								<label for="bandeira-cartao">Bandeira</label>
+								<select name="brand" id="brand" class="form-control">
+									<option id="a" value="a">MasterCard</option>
+									<option id="b" value="b">Visa <img src="https://cdn.icon-icons.com/icons2/2245/PNG/512/credit_card_visa_payment_method_icon_134914.png" alt=""></option>
+									<option id="c" value="c">Elo</option>
+								</select>
+							</div>
+
+                            <div class="form-group">
+								<label for="card">Numero do cartao</label>
+								<input type="text" class="form-control" id="card" name="card" placeholder="0000 0000 0000 0000" required="required">
+							</div>
+
+							<div class="form-group">
+								<label for="numero-cartao">Número - CVV</label>
+								<input type="text" class="form-control" id="cvv" name="numero-cartao" maxlength="3" required="required">
+							</div>
+
+							
+
+							<div class="form-group">
+								<label for="validade-cartao">Validade</label>
+								<input type="text" class="form-control" id="validade-cartao" name="validade-cartao" placeholder="--/--" required="required">
+							</div>
+						</fieldset>
+					</div>
+
+					<button type="button" class="btn btn-primary pull-right" onclick="GerarTransacaoCred()">
+						<span class="glyphicon glyphicon-thumbs-up"></span>
+						Confirmar compra
+					</button>
+				</form>
+			</div>
+		</div>
+
+        <script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="qrcode.min.js"></script>
+
+
+		
+	</body>
+</html>
+
+
